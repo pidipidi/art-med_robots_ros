@@ -1,0 +1,8 @@
+<package>
+  <name>art_med_robots_launchfiles</name>
+  <version>1.0.0</version>
+  <description>Example launch files</description>
+  <maintainer email="artmedgwu@gmail.com">ART-Med</maintainer> 
+  <license> BSD </license>
+  <run_depend>roslaunch</run_depend>
+</package>

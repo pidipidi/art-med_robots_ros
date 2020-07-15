@@ -55,3 +55,4 @@ catkin_make
   cd catkin_ws/src/art-med_robots_ros/launch
   roslaunch pioneer-lx-jaco2-joint-state-gui.launch
   ```
+  <img src="https://github.com/juyoun726/art-med_robots_ros/blob/master/images/pioneer-lx-jaco2-joint-states-gui.png" width="640">

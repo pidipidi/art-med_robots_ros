@@ -193,6 +193,18 @@ TODO separate out pioner lx wheels in visual model
   </link>
   <link name="right_arm_mount">
   </link>
+  <joint name="left_arm_attach" type="fixed">
+    <child link="left_arm_mount"/>
+    <parent link="base_link"/>
+    <origin rpy="0 0 1.5707" xyz="-0.02 0.184 1.086"/>
+    <!-- old z was 1.1384 -->
+  </joint>
+  <joint name="right_arm_attach" type="fixed">
+    <child link="right_arm_mount"/>
+    <parent link="base_link"/>
+    <origin rpy="0 0 1.5707" xyz="-0.02 -0.184 1.086"/>
+    <!-- old z was 1.1384 -->
+  </joint>
   <!-- ros_control plugin -->
   <gazebo>
     <plugin filename="libgazebo_ros_control.so" name="gazebo_ros_control">
@@ -1373,18 +1385,6 @@ TODO separate out pioner lx wheels in visual model
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
-  <joint name="left_arm_attach" type="fixed">
-    <child link="left_arm_mount"/>
-    <parent link="base_link"/>
-    <origin rpy="0 0 1.5707" xyz="-0.02 0.184 1.086"/>
-    <!-- old z was 1.1384 -->
-  </joint>
-  <joint name="right_arm_attach" type="fixed">
-    <child link="right_arm_mount"/>
-    <parent link="base_link"/>
-    <origin rpy="0 0 1.5707" xyz="-0.02 -0.184 1.086"/>
-    <!-- old z was 1.1384 -->
-  </joint>
   <!-- PTU 
     The flir_ptu_description package is either from system packages in
     /opt/ros/... or from source repository

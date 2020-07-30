@@ -1,35 +1,36 @@
 # ART-Med Robots ROS Packages
+*Pioneer LX with two JACO2 arms*
 
 ## Requirements
 
 - Ubuntu 16.04
 - ROS Kinetic
 
-- [Kinova ROS](https://github.com/Kinovarobotics/kinova-ros)
+- Install [Kinova ROS](https://github.com/Kinovarobotics/kinova-ros)
   ```
   cd catkin_ws/src
   git clone https://github.com/Kinovarobotics/kinova-ros.git
   ```
   
-- [AMR Robots](https://github.com/MobileRobots/amr-ros-config)
+- Install [AMR Robots](https://github.com/MobileRobots/amr-ros-config)
   ```
   cd catkin/src
   git clone https://github.com/MobileRobots/amr-ros-config.git
   ```
   
-- [FLIR PTU ROS driver](https://github.com/ros-drivers/flir_ptu)
+- (option) Install [FLIR PTU ROS driver](https://github.com/ros-drivers/flir_ptu)
   ```
   cd catkin_ws/src
   git clone https://github.com/ros-drivers/flir_ptu.git
   ```
 
-- Dependencies
+- Install dependencies
   ```
   sudo apt-get install ros-kinetic-serial
   sudo apt-get install ros-kinetic-joint-state-publisher-gui
   ```
 
-- Gazebo 9 with ROS Kinetic
+- Install Gazebo 9 with ROS Kinetic
   ```
   sudo apt-get remove ros-kinetic-gazebo* gazebo*
   sudo sh -c 'echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_release -cs` main" > /etc/apt/sources.list.d/gazebo-stable.list'
@@ -50,9 +51,34 @@ catkin_make
 
 ## How to Run
 
-- Pioneer LX with two JACO2 arms
+- Rviz
   ```
-  cd catkin_ws/src/art-med_robots_ros/launch
-  roslaunch pioneer-lx-jaco2-joint-state-gui.launch
+  roslaunch art_med_robots_description robot_rviz.launch
   ```
-  <img src="https://github.com/juyoun726/art-med_robots_ros/blob/master/images/pioneer-lx-jaco2-joint-states-gui.png" width="640">
+  <img src="https://github.com/juyoun726/art-med_robots_ros/blob/master/images/robot_rviz.png" width="640">
+  
+- Gazebo world
+  ```
+  roslaunch art_med_robots_gazebo robot_world.launch
+  ```
+  <img src="https://github.com/juyoun726/art-med_robots_ros/blob/master/images/robot_world.png" width="640">
+  
+- Gazebo & ROS control
+  ```
+  roslaunch art_med_robots_gazebo robot_world.launch
+  roslaunch art_med_robots_control robot_control.launch
+  ```
+  or
+  ```
+  roslaunch art_med_robots_gazebo robot_gazebo.launch
+  ```
+  
+  Start simulation before control (click play button).
+  <img src="https://github.com/juyoun726/art-med_robots_ros/blob/master/images/robot_world_play.png" width="640">
+  
+- Example of moving a joint
+  ```
+  rostopic pub -1 /robot/left_joint_2_position_controller/command std_msgs/Float64 "data: 2.0"
+  ```
+  <img src="https://github.com/juyoun726/art-med_robots_ros/blob/master/images/robot_gazebo.png" width="640">
+  

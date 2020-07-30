@@ -72,10 +72,7 @@ catkin_make
   ```
   roslaunch art_med_robots_gazebo robot_gazebo.launch
   ```
-  
-  Start simulation before control (click play button).
-  <img src="https://github.com/juyoun726/art-med_robots_ros/blob/master/images/robot_world_play.png" width="640">
-  
+ 
 - Example of moving a joint
   ```
   rostopic pub -1 /robot/left_joint_2_position_controller/command std_msgs/Float64 "data: 2.0"

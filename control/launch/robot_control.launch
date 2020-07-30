@@ -26,5 +26,7 @@
         respawn="false" output="screen">    
     <remap from="/joint_states" to="/$(arg name)/joint_states"/>    
   </node>
+
+  <node name="command_robot_home_pose" pkg="art_med_robots_control" type="move_robot.py" />
   
 </launch>

@@ -14,6 +14,8 @@
 	xmlns:renderable="http://playerstage.sourceforge.net/gazebo/xmlschema/#renderable"
 	xmlns:physics="http://playerstage.sourceforge.net/gazebo/xmlschema/#physics">
 
+  <!-- TODO share pioneer lx mobile robot components with pioneer-lx urdf by
+including macro. -->
   
   <property name="deck_height" value="0.076" />
   <property name="deck_width" value="0.437" />
@@ -33,9 +35,6 @@
   <property name="left_arm_origin" value="-0.02 0.184 ${arm_origin_z}" /> <!-- old z was 1.1384 -->
   <property name="right_arm_origin" value="-0.02 -0.184 ${arm_origin_z}" />
 
-  <!-- Import all Gazebo-customization elements -->
-  <xacro:include filename="$(find art_med_robots_description)/urdf/robot.gazebo" />
-  <xacro:gazebo_config robot_namespace="robot"/>
 
   <link name="base_link">
 
@@ -242,6 +241,63 @@ TODO separate out pioner lx wheels in visual model
   
   <xacro:j2n6s300  base_parent="right_arm_mount" prefix="right" />
 
+ <!-- PTU 
+    The flir_ptu_description package is either from system packages in
+    /opt/ros/... or from source repository
+    https://github.com/ros-drivers/flir_ptu
+  -->
+
+  <xacro:include filename="$(find art_med_robots_description)/urdf/d46.urdf.xacro" />
+  <ptu_d46 name="ptu" />
+
+  <joint name="ptu_base_mount" type="fixed">
+    <parent link="plinth" />
+    <child link="ptu_base_link" />
+    <origin xyz="0.152 0.03 0.91" /> 
+  </joint>
+
+
+  <!-- kinect -->
+
+  <link name="kinect">
+    <visual name="kinect_visual">
+      <geometry name="kinect_visual_geom">
+        <box size="0.07 0.25 0.065" />
+        <origin xyz="0.03 0 0.035" />
+      </geometry>
+      <material name="kinect_black_mat">
+        <color rgba="0.0 0.0 0.0 1.0" />
+      </material>
+    </visual>
+    <collision name="kinect_collision">
+      <geometry name="kinect_visual_geom">
+        <box size="0.07 0.25 0.065" />
+        <origin xyz="0.03 0 0.035" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="kinect_mount" type="fixed">
+    <parent link="ptu_base_link" />
+    <child  link="kinect" />
+    <origin xyz="0 0 0.0325" />
+  </joint>
+
+
+  <!-- hack for depthimage_to_laserscan (todo: configure depthimage_to_laserscan to use "kinect" as frame -->
+  <link name="camera_depth_frame"> 
+    <origin xyz="0 0 0" />
+    <inertial>
+      <mass value="0.0" /> 
+      <inertia ixx="1" ixy="0" ixz="0" iyy="1" iyz="0" izz="1" />
+    </inertial>
+  </link>
+
+  <joint name="camera_depth_frame_joint" type="fixed">
+    <parent link="kinect" />
+    <child link="camera_depth_frame" />
+    <origin xyz="0 0 0" />
+  </joint>
 
 </robot>
   

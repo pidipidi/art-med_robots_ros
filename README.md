@@ -83,4 +83,14 @@ catkin_make
   rostopic pub -1 /robot/left_joint_2_position_controller/command std_msgs/Float64 "data: 2.0"
   ```
   <img src="https://github.com/juyoun726/art-med_robots_ros/blob/master/images/robot_gazebo.png" width="640">
-  
+ 
+- Controlling the FLIR PTU unit
+  ```
+  roslaunch art_med_robots_gazebo robot_sensors_gazebo.launch
+  rostopic pub -1 /robot/ptu_pan_position_controller/command std_msgs/Float64 "data: 5.0"
+  rostopic pub -1 /robot/ptu_tilt_position_controller/command std_msgs/Float64 "data: -0.8"
+  ```
+  <img src="https://github.com/juyoun726/art-med_robots_ros/blob/master/images/pan.png" width="320">
+  <img src="https://github.com/juyoun726/art-med_robots_ros/blob/master/images/tilt.png" width="320">
+
+ 

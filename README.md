@@ -6,6 +6,11 @@
 - Ubuntu 16.04
 - ROS Kinetic
 
+- Install [MoveIt](http://wiki.ros.org/moveit)
+  ```
+  sudo apt-get install ros-kinetic-moveit*
+  ```
+
 - Install [Kinova ROS](https://github.com/Kinovarobotics/kinova-ros)
   ```
   cd catkin_ws/src

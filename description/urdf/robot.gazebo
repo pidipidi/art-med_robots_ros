@@ -17,10 +17,10 @@
 		<material>Gazebo/Red</material>
 	</gazebo>
 	<gazebo reference="deck">
-		<material>Gazebo/Black</material>
+		<material>Gazebo/DarkGrey</material>
 	</gazebo>
 	<gazebo reference="plinth">
-		<material>Gazebo/Black</material>
+		<material>Gazebo/DarkGrey</material>
 	</gazebo>
 	<gazebo reference="l_wheel">
 		<material>Gazebo/Black</material>

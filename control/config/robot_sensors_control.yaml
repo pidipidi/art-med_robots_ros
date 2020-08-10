@@ -1,0 +1,387 @@
+robot:
+  left_effort_finger_trajectory_controller:
+    constraints:
+      goal_time: 1.0
+      left_joint_finger_1:
+        goal: 0.02
+        trajectory: 0.05
+      left_joint_finger_2:
+        goal: 0.02
+        trajectory: 0.05
+      left_joint_finger_3:
+        goal: 0.02
+        trajectory: 0.05
+      stopped_velocity_tolerance: 0.02
+    gains:
+      left_joint_finger_1:
+        d: 0
+        i: 0
+        i_clamp: 1
+        p: 10
+      left_joint_finger_2:
+        d: 0
+        i: 0
+        i_clamp: 1
+        p: 10
+      left_joint_finger_3:
+        d: 0
+        i: 0
+        i_clamp: 1
+        p: 10
+    joints:
+    - left_joint_finger_1
+    - left_joint_finger_2
+    - left_joint_finger_3
+    type: effort_controllers/JointTrajectoryController
+  left_effort_joint_trajectory_controller:
+    constraints:
+      goal_time: 1.0
+      left_joint_1:
+        goal: 0.02
+        trajectory: 0.05
+      left_joint_2:
+        goal: 0.02
+        trajectory: 0.05
+      left_joint_3:
+        goal: 0.02
+        trajectory: 0.05
+      left_joint_4:
+        goal: 0.02
+        trajectory: 0.05
+      left_joint_5:
+        goal: 0.02
+        trajectory: 0.05
+      left_joint_6:
+        goal: 0.02
+        trajectory: 0.05
+      stopped_velocity_tolerance: 0.02
+    gains:
+      left_joint_1:
+        d: 0
+        i: 0
+        i_clamp: 10
+        p: 5000
+      left_joint_2:
+        d: 0
+        i: 0
+        i_clamp: 10
+        p: 5000
+      left_joint_3:
+        d: 0
+        i: 0
+        i_clamp: 10
+        p: 5000
+      left_joint_4:
+        d: 0
+        i: 0
+        i_clamp: 10
+        p: 500
+      left_joint_5:
+        d: 0
+        i: 0
+        i_clamp: 10
+        p: 200
+      left_joint_6:
+        d: 0
+        i: 0
+        i_clamp: 10
+        p: 500
+    joints:
+    - left_joint_1
+    - left_joint_2
+    - left_joint_3
+    - left_joint_4
+    - left_joint_5
+    - left_joint_6
+    type: effort_controllers/JointTrajectoryController
+  left_finger_1_position_controller:
+    joint: left_joint_finger_1
+    pid:
+      d: 0
+      i: 0
+      p: 10
+    type: effort_controllers/JointPositionController
+  left_finger_2_position_controller:
+    joint: left_joint_finger_2
+    pid:
+      d: 0
+      i: 0
+      p: 10
+    type: effort_controllers/JointPositionController
+  left_finger_3_position_controller:
+    joint: left_joint_finger_3
+    pid:
+      d: 0
+      i: 0
+      p: 10
+    type: effort_controllers/JointPositionController
+  left_finger_tip_1_position_controller:
+    joint: left_joint_finger_tip_1
+    pid:
+      d: 0
+      i: 0
+      p: 0.5
+    type: effort_controllers/JointPositionController
+  left_finger_tip_2_position_controller:
+    joint: left_joint_finger_tip_2
+    pid:
+      d: 0
+      i: 0
+      p: 0.5
+    type: effort_controllers/JointPositionController
+  left_finger_tip_3_position_controller:
+    joint: left_joint_finger_tip_3
+    pid:
+      d: 0
+      i: 0
+      p: 0.5
+    type: effort_controllers/JointPositionController
+  left_joint_1_position_controller:
+    joint: left_joint_1
+    pid:
+      d: 0
+      i: 0
+      p: 5000
+    type: effort_controllers/JointPositionController
+  left_joint_2_position_controller:
+    joint: left_joint_2
+    pid:
+      d: 0
+      i: 0
+      p: 5000
+    type: effort_controllers/JointPositionController
+  left_joint_3_position_controller:
+    joint: left_joint_3
+    pid:
+      d: 0
+      i: 0
+      p: 5000
+    type: effort_controllers/JointPositionController
+  left_joint_4_position_controller:
+    joint: left_joint_4
+    pid:
+      d: 0
+      i: 0
+      p: 500
+    type: effort_controllers/JointPositionController
+  left_joint_5_position_controller:
+    joint: left_joint_5
+    pid:
+      d: 0
+      i: 0
+      p: 200
+    type: effort_controllers/JointPositionController
+  left_joint_6_position_controller:
+    joint: left_joint_6
+    pid:
+      d: 0
+      i: 0
+      p: 500
+    type: effort_controllers/JointPositionController
+  right_effort_finger_trajectory_controller:
+    constraints:
+      goal_time: 1.0
+      right_joint_finger_1:
+        goal: 0.02
+        trajectory: 0.05
+      right_joint_finger_2:
+        goal: 0.02
+        trajectory: 0.05
+      right_joint_finger_3:
+        goal: 0.02
+        trajectory: 0.05
+      stopped_velocity_tolerance: 0.02
+    gains:
+      right_joint_finger_1:
+        d: 0
+        i: 0
+        i_clamp: 1
+        p: 10
+      right_joint_finger_2:
+        d: 0
+        i: 0
+        i_clamp: 1
+        p: 10
+      right_joint_finger_3:
+        d: 0
+        i: 0
+        i_clamp: 1
+        p: 10
+    joints:
+    - right_joint_finger_1
+    - right_joint_finger_2
+    - right_joint_finger_3
+    type: effort_controllers/JointTrajectoryController
+  right_effort_joint_trajectory_controller:
+    constraints:
+      goal_time: 1.0
+      right_joint_1:
+        goal: 0.02
+        trajectory: 0.05
+      right_joint_2:
+        goal: 0.02
+        trajectory: 0.05
+      right_joint_3:
+        goal: 0.02
+        trajectory: 0.05
+      right_joint_4:
+        goal: 0.02
+        trajectory: 0.05
+      right_joint_5:
+        goal: 0.02
+        trajectory: 0.05
+      right_joint_6:
+        goal: 0.02
+        trajectory: 0.05
+      stopped_velocity_tolerance: 0.02
+    gains:
+      right_joint_1:
+        d: 0
+        i: 0
+        i_clamp: 10
+        p: 5000
+      right_joint_2:
+        d: 0
+        i: 0
+        i_clamp: 10
+        p: 5000
+      right_joint_3:
+        d: 0
+        i: 0
+        i_clamp: 10
+        p: 5000
+      right_joint_4:
+        d: 0
+        i: 0
+        i_clamp: 10
+        p: 500
+      right_joint_5:
+        d: 0
+        i: 0
+        i_clamp: 10
+        p: 200
+      right_joint_6:
+        d: 0
+        i: 0
+        i_clamp: 10
+        p: 500
+    joints:
+    - right_joint_1
+    - right_joint_2
+    - right_joint_3
+    - right_joint_4
+    - right_joint_5
+    - right_joint_6
+    type: effort_controllers/JointTrajectoryController
+  right_finger_1_position_controller:
+    joint: right_joint_finger_1
+    pid:
+      d: 0
+      i: 0
+      p: 10
+    type: effort_controllers/JointPositionController
+  right_finger_2_position_controller:
+    joint: right_joint_finger_2
+    pid:
+      d: 0
+      i: 0
+      p: 10
+    type: effort_controllers/JointPositionController
+  right_finger_3_position_controller:
+    joint: right_joint_finger_3
+    pid:
+      d: 0
+      i: 0
+      p: 10
+    type: effort_controllers/JointPositionController
+  right_finger_tip_1_position_controller:
+    joint: right_joint_finger_tip_1
+    pid:
+      d: 0
+      i: 0
+      p: 0.5
+    type: effort_controllers/JointPositionController
+  right_finger_tip_2_position_controller:
+    joint: right_joint_finger_tip_2
+    pid:
+      d: 0
+      i: 0
+      p: 0.5
+    type: effort_controllers/JointPositionController
+  right_finger_tip_3_position_controller:
+    joint: right_joint_finger_tip_3
+    pid:
+      d: 0
+      i: 0
+      p: 0.5
+    type: effort_controllers/JointPositionController
+  right_joint_1_position_controller:
+    joint: right_joint_1
+    pid:
+      d: 0
+      i: 0
+      p: 5000
+    type: effort_controllers/JointPositionController
+  right_joint_2_position_controller:
+    joint: right_joint_2
+    pid:
+      d: 0
+      i: 0
+      p: 5000
+    type: effort_controllers/JointPositionController
+  right_joint_3_position_controller:
+    joint: right_joint_3
+    pid:
+      d: 0
+      i: 0
+      p: 5000
+    type: effort_controllers/JointPositionController
+  right_joint_4_position_controller:
+    joint: right_joint_4
+    pid:
+      d: 0
+      i: 0
+      p: 500
+    type: effort_controllers/JointPositionController
+  right_joint_5_position_controller:
+    joint: right_joint_5
+    pid:
+      d: 0
+      i: 0
+      p: 200
+    type: effort_controllers/JointPositionController
+  right_joint_6_position_controller:
+    joint: right_joint_6
+    pid:
+      d: 0
+      i: 0
+      p: 500
+    type: effort_controllers/JointPositionController
+  ptu_pan_position_controller:
+    joint: ptu_pan
+    pid:
+      d: 0
+      i: 0
+      p: 10
+    type: position_controllers/JointPositionController
+  ptu_tilt_position_controller:
+    joint: ptu_tilt
+    pid:
+      d: 0
+      i: 0
+      p: 10
+    type: position_controllers/JointPositionController
+  joint_state_controller:
+    publish_rate: 50
+    type: joint_state_controller/JointStateController
+
+/gazebo_ros_control:
+  pid_gains:
+    ptu_pan:
+      p: 10
+      i: 0 
+      d: 0
+    ptu_tilt:
+      p: 10
+      i: 0 
+      d: 0

@@ -23,7 +23,7 @@
   git clone https://github.com/MobileRobots/amr-ros-config.git
   ```
   
-- (option) Install [FLIR PTU ROS driver](https://github.com/ros-drivers/flir_ptu)
+- Install [FLIR PTU ROS driver](https://github.com/ros-drivers/flir_ptu)
   ```
   cd catkin_ws/src
   git clone https://github.com/ros-drivers/flir_ptu.git

@@ -1,0 +1,13 @@
+- git:
+    local-name: kinova-ros
+    uri: https://github.com/Kinovarobotics/kinova-ros.git
+    version: master
+- git:
+    local-name: arm-ros-config
+    uri: https://github.com/MobileRobots/amr-ros-config.git
+    version: master
+- git:
+    local-name: flir_ptu
+    uri: https://github.com/ros-drivers/flir_ptu.git
+    version: master
+

@@ -10,4 +10,19 @@
     local-name: flir_ptu
     uri: https://github.com/ros-drivers/flir_ptu.git
     version: master
-
+- git:
+    local-name: behaviors/complex_action_client
+    uri: https://github.com/rirolab/complex_action_client.git
+    version: master
+- git:
+    local-name: utils/riro-kdl
+    uri: https://github.com/rirolab/riro-kdl.git
+    version: melodic-devel
+- git:
+    local-name: utils/riro-msgs
+    uri: https://github.com/rirolab/riro-msgs.git
+    version: master
+- git:
+    local-name: behaviors/behavior_tree
+    uri: https://github.com/rirolab/behavior_tree.git
+    version: master

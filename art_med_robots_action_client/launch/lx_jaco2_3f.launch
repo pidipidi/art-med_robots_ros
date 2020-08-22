@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<launch>
+  <arg name="sim" default="true" />
+  <arg name="perception" default="false" />
+  <arg name="world_file" value="$(find world_model_data)/data/worlds/default.xml" /> 
+  <arg name="world_channel" value="world_model" />
+  <arg name="fact_channel" value="add_facts" />
+  
+  <!-- Set robot-specific paramters -->
+  <param name="world_frame" type="str" value="world" />
+  <param name="torso_frame" type="str" value="base_link" />
+  <param name="arm_base_frame" type="str" value="left_link_base" />
+  <param name="ee_frame" type="str" value="left_end_effector" />
+  <param name="tool_offset_frame" type="str" value="[0,0,0.02,0,3.141592,0]" />
+  <param name="controller_ns" type="str" value="/left_position_joint_trajectory_controller" />
+  <param name="gripper_open_pos" type="double" value="0.3" />
+  <param name="gripper_close_pos" type="double" value="1.5" />
+  
+  <node name="arm_client"
+        pkg="art_med_robots_action_client"
+        type="arm_client_jaco2_3F.py"
+        args="--sim --prefix left"
+        output="screen"
+        required="true" >
+  </node>
+  <node name="behavior_tree"
+        pkg="behavior_tree"
+        type="dynamic_behavior_tree.py"
+        output="screen"
+        required="true">
+  </node>    
+  
+  <!-- <group ns="right"> -->
+  <!--   <param name="arm_base_frame" type="str" value="right_link_base" /> -->
+  <!--   <param name="ee_frame" type="str" value="right_end_effector" /> -->
+  <!--   <param name="tool_offset_frame" type="str" value="[0,0,0.02,0,0,0]" /> -->
+  <!--   <param name="controller_ns" type="str" value="/right_position_joint_trajectory_controller" /> -->
+  <!--   <param name="gripper_open_pos" type="double" value="0.3" /> -->
+  <!--   <param name="gripper_close_pos" type="double" value="1.5" /> -->
+    
+  <!--   <node name="arm_client" -->
+  <!--         pkg="art_med_robots_action_client" -->
+  <!--         type="arm_client_jaco2_3F.py" -->
+  <!--         args="-\-sim -\-prefix right" -->
+  <!--         output="screen" -->
+  <!--         required="true" > -->
+  <!--   </node> -->
+  <!-- </group> -->
+  
+  <!-- <node name="behavior_tree" -->
+  <!--       pkg="behavior_tree" -->
+  <!--       type="dynamic_behavior_tree.py" -->
+  <!--       output="screen" -->
+  <!--       required="true"> -->
+  <!--   <param name="controller_ns" type="str" value="/left_position_joint_trajectory_controller" /> -->
+  <!--   <rosparam param="namespaces"> ["left","right"] </rosparam> -->
+  <!-- </node> -->
+
+  <!-- start world model node -->
+  <include file="$(find world_model)/launch/world_model.launch">
+    <arg name="world_file" value="$(arg world_file)" />
+    <arg name="world_channel" value="$(arg world_channel)" />
+    <arg name="fact_channel" value="$(arg fact_channel)" />
+    <arg name="sim" value="$(arg sim)" />
+    <arg name="perception" value="$(arg perception)" />
+  </include>
+    
+</launch>
+  
+  
+  

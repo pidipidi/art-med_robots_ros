@@ -1,0 +1,438 @@
+#!/usr/bin/env python
+
+import rospy
+from std_msgs.msg import String
+import json
+import datetime
+import sys
+
+if __name__ == '__main__':
+    rospy.init_node('grounding_node_temp')
+
+    print "----------------------------------------------"
+    rospy.sleep(1.0)
+    pub = rospy.Publisher('/symbol_grounding', String, queue_size=10)
+    rospy.sleep(1.0)
+
+    while not rospy.is_shutdown():
+        cmd = input("Command?: ")
+        if cmd == -2:        
+            d = {"timestamp": str(datetime.datetime.now()),
+                 "params": {"1": {"primitive_action": "gripper_close",
+                                  "direction": "na",
+                                  "object": "na",
+                                  "source": "na",
+                                  "destination": "na"}},
+                            "param_num": 1 }
+        elif cmd == -1:        
+            d = {"timestamp": str(datetime.datetime.now()),
+                 "params": {"1": {"primitive_action": "gripper_open",
+                                  "direction": "na",
+                                  "object": "na",
+                                  "source": "na",
+                                  "destination": "na"}},
+                            "param_num": 1 }
+        elif cmd == 0:
+            d = {"timestamp": str(datetime.datetime.now()),
+                 "params": {"1": {"primitive_action": "stop",
+                                  "object": "na",
+                                  "source": "na",
+                                  "destination": "na"}},
+                                  "param_num": 1 }            
+        elif cmd == 1:        
+            d = {"timestamp": str(datetime.datetime.now()),
+                 "params": {"1": {"primitive_action": "jog",
+                                  "distance": "na",
+                                  "direction": "+x",
+                                  "object": "na",
+                                  "source": "na",
+                                  "destination": "na"}},
+                            "param_num": 1 }
+        elif cmd == 2:        
+            d = {"timestamp": str(datetime.datetime.now()),
+                 "params": {"1": {"primitive_action": "jog",
+                                  "distance": "na",
+                                  "direction": "-x",
+                                  "object": "na",
+                                  "source": "na",
+                                  "destination": "na"}},
+                            "param_num": 1 }
+        elif cmd == 3:        
+            d = {"timestamp": str(datetime.datetime.now()),
+                 "params": {"1": {"primitive_action": "jog",
+                                  "distance": "na",
+                                  "direction": "+y",
+                                  "object": "na",
+                                  "source": "na",
+                                  "destination": "na"}},
+                            "param_num": 1 }
+        elif cmd == 4:        
+            d = {"timestamp": str(datetime.datetime.now()),
+                 "params": {"1": {"primitive_action": "jog",
+                                  "distance": "na",
+                                  "direction": "-y",
+                                  "object": "na",
+                                  "source": "na",
+                                  "destination": "na"}},
+                            "param_num": 1 }
+        elif cmd == 5:        
+            d = {"timestamp": str(datetime.datetime.now()),
+                 "params": {"1": {"primitive_action": "jog",
+                                  "distance": "na",
+                                  "direction": "+z",
+                                  "object": "na",
+                                  "source": "na",
+                                  "destination": "na"}},
+                            "param_num": 1 }
+        elif cmd == 6:        
+            d = {"timestamp": str(datetime.datetime.now()),
+                 "params": {"1": {"primitive_action": "jog",
+                                  "distance": "na",
+                                  "direction": "-z",
+                                  "object": "na",
+                                  "source": "na",
+                                  "destination": "na"}},
+                            "param_num": 1 }
+        elif cmd == 7:        
+            d = {"timestamp": str(datetime.datetime.now()),
+                 "params": {"1": {"primitive_action": "jog",
+                                  "distance": "na",
+                                  "direction": "+rx",
+                                  "object": "na",
+                                  "source": "na",
+                                  "destination": "na"}},
+                            "param_num": 1 }
+        elif cmd == 8:        
+            d = {"timestamp": str(datetime.datetime.now()),
+                 "params": {"1": {"primitive_action": "jog",
+                                  "distance": "na",
+                                  "direction": "-rx",
+                                  "object": "na",
+                                  "source": "na",
+                                  "destination": "na"}},
+                            "param_num": 1 }
+        elif cmd == 9:        
+            d = {"timestamp": str(datetime.datetime.now()),
+                 "params": {"1": {"primitive_action": "jog",
+                                  "distance": "na",
+                                  "direction": "+ry",
+                                  "object": "na",
+                                  "source": "na",
+                                  "destination": "na"}},
+                            "param_num": 1 }
+        elif cmd == 10:        
+            d = {"timestamp": str(datetime.datetime.now()),
+                 "params": {"1": {"primitive_action": "jog",
+                                  "distance": "na",
+                                  "direction": "-ry",
+                                  "object": "na",
+                                  "source": "na",
+                                  "destination": "na"}},
+                            "param_num": 1 }
+        elif cmd == 11:        
+            d = {"timestamp": str(datetime.datetime.now()),
+                 "params": {"1": {"primitive_action": "jog",
+                                  "distance": "na",
+                                  "direction": "+rz",
+                                  "object": "na",
+                                  "source": "na",
+                                  "destination": "na"}},
+                            "param_num": 1 }
+        elif cmd == 12:        
+            d = {"timestamp": str(datetime.datetime.now()),
+                 "params": {"1": {"primitive_action": "jog",
+                                  "distance": "na",
+                                  "direction": "-rz",
+                                  "object": "na",
+                                  "source": "na",
+                                  "destination": "na"}},
+                            "param_num": 1 }
+
+
+        # -----------------------------------------------------------
+        elif cmd == 20:        
+            d = {"timestamp": str(datetime.datetime.now()),
+                 "params": {"1": {"primitive_action": "jog",
+                                  "distance": 0.1,
+                                  "direction": "-x",
+                                  "object": "na",
+                                  "source": "na",
+                                  "destination": "na"}},
+                            "param_num": 1 }
+        elif cmd == 21:        
+            d = {"timestamp": str(datetime.datetime.now()),
+                 "params": {"1": {"primitive_action": "jog",
+                                  "distance": 0.1,
+                                  "direction": "+x",
+                                  "object": "na",
+                                  "source": "na",
+                                  "destination": "na"}},
+                            "param_num": 1 }
+        elif cmd == 22:        
+            d = {"timestamp": str(datetime.datetime.now()),
+                 "params": {"1": {"primitive_action": "jog",
+                                  "distance": 0.1,
+                                  "direction": "-y",
+                                  "object": "na",
+                                  "source": "na",
+                                  "destination": "na"}},
+                            "param_num": 1 }
+        elif cmd == 23:        
+            d = {"timestamp": str(datetime.datetime.now()),
+                 "params": {"1": {"primitive_action": "jog",
+                                  "distance": 0.1,
+                                  "direction": "+y",
+                                  "object": "na",
+                                  "source": "na",
+                                  "destination": "na"}},
+                            "param_num": 1 }
+        elif cmd == 24:        
+            d = {"timestamp": str(datetime.datetime.now()),
+                 "params": {"1": {"primitive_action": "jog",
+                                  "distance": 0.3,
+                                  "direction": "-z",
+                                  "object": "na",
+                                  "source": "na",
+                                  "destination": "na"}},
+                            "param_num": 1 }
+        elif cmd == 25:        
+            d = {"timestamp": str(datetime.datetime.now()),
+                 "params": {"1": {"primitive_action": "jog",
+                                  "distance": 0.3,
+                                  "direction": "+z",
+                                  "object": "na",
+                                  "source": "na",
+                                  "destination": "na"}},
+                            "param_num": 1 }
+
+        elif cmd == 26:        
+            d = {"timestamp": str(datetime.datetime.now()),
+                 "params": {"1": {"primitive_action": "jog",
+                                  "distance": 0.2,
+                                  "direction": "-rx",
+                                  "object": "na",
+                                  "source": "na",
+                                  "destination": "na"}},
+                            "param_num": 1 }
+        elif cmd == 27:        
+            d = {"timestamp": str(datetime.datetime.now()),
+                 "params": {"1": {"primitive_action": "jog",
+                                  "distance": 0.2,
+                                  "direction": "+rx",
+                                  "object": "na",
+                                  "source": "na",
+                                  "destination": "na"}},
+                            "param_num": 1 }
+
+        elif cmd == 28:        
+            d = {"timestamp": str(datetime.datetime.now()),
+                 "params": {"1": {"primitive_action": "jog",
+                                  "distance": 0.2,
+                                  "direction": "-ry",
+                                  "object": "na",
+                                  "source": "na",
+                                  "destination": "na"}},
+                            "param_num": 1 }
+        elif cmd == 29:        
+            d = {"timestamp": str(datetime.datetime.now()),
+                 "params": {"1": {"primitive_action": "jog",
+                                  "distance": 0.2,
+                                  "direction": "+ry",
+                                  "object": "na",
+                                  "source": "na",
+                                  "destination": "na"}},
+                            "param_num": 1 }
+
+        elif cmd == 30:        
+            d = {"timestamp": str(datetime.datetime.now()),
+                 "params": {"1": {"primitive_action": "jog",
+                                  "distance": 0.2,
+                                  "direction": "-rz",
+                                  "object": "na",
+                                  "source": "na",
+                                  "destination": "na"}},
+                            "param_num": 1 }
+        elif cmd == 31:        
+            d = {"timestamp": str(datetime.datetime.now()),
+                 "params": {"1": {"primitive_action": "jog",
+                                  "distance": 0.2,
+                                  "direction": "+rz",
+                                  "object": "na",
+                                  "source": "na",
+                                  "destination": "na"}},
+                            "param_num": 1 }
+
+        # -----------------------------------------------------------
+        elif cmd == 40:        
+            d = {"timestamp": str(datetime.datetime.now()),
+                 "params": {"1": {"primitive_action": "move",
+                                  "object": "object2",
+                                  "source": "object2",
+                                  "destination": "place-store"}},
+                                  "param_num": 1 }
+        elif cmd == 41:        
+            d = {"timestamp": str(datetime.datetime.now()),
+                 "params": {"1": {"primitive_action": "move",
+                                  "object": "object3",
+                                  "source": "object3",
+                                  "destination": "place_tray"}},
+                                  "param_num": 1 }
+        elif cmd == 42:        
+            d = {"timestamp": str(datetime.datetime.now()),
+                 "params": {"1": {"primitive_action": "pick",
+                                  "object": "object3",
+                                  "source": "na",
+                                  "destination": "na"},
+                           "2": {"primitive_action": "handover",
+                                 "object": "na",
+                                 "source": "object3",
+                                 "destination": "place_tray"}},
+                                 "param_num": 2 }
+        elif cmd == 43:        
+            d = {"timestamp": str(datetime.datetime.now()),
+                 "params": {"1": {"primitive_action": "move",
+                                  "object": "object7",
+                                  "source": "object7",
+                                  "destination": "place_tray"}},
+                                  "param_num": 1 }
+        elif cmd == 44:        
+            d = {"timestamp": str(datetime.datetime.now()),
+                 "params": {"1": {"primitive_action": "move",
+                                  "object": "object6",
+                                  "source": "object6",
+                                  "destination": "place-toolbox"}},
+                                  "param_num": 1 }
+        elif cmd == 45:
+            d = {"timestamp": str(datetime.datetime.now()),
+                 "params": {"1": {"primitive_action": "pick_object",
+                                  "source": "milk",
+                                  "destination": "place-store"}},
+                                  "param_num": 1 }            
+        elif cmd == 46:
+            d = {"timestamp": str(datetime.datetime.now()),
+                 "params": {"1": {"primitive_action": "place_object",
+                                  "source": "milk",
+                                  "destination": "table"}},
+                                  "param_num": 1 }            
+        elif cmd == 47:
+            d = {"timestamp": str(datetime.datetime.now()),
+                 "params": {"1": {"primitive_action": "move",
+                                  "object": "cup2",
+                                  "source": "cup2",
+                                  "destination": "place-table1"},
+                            "2": {"primitive_action": "move",
+                                  "object": "cup1",
+                                  "source": "cup1",
+                                  "destination": "place-table1"}},
+                                  "param_num": 2 }            
+        elif cmd == 48:
+            d = {"timestamp": str(datetime.datetime.now()),
+                 "params": {"1": {"primitive_action": "move",
+                                  "object": "apple",
+                                  "source": "apple",
+                                  "destination": "place_tray"}},
+                                  "param_num": 1 }            
+        elif cmd == 49:
+            d = {"timestamp": str(datetime.datetime.now()),
+                 "params": {"1": {"primitive_action": "move",
+                                  "object": "milk",
+                                  "source": "milk",
+                                  "destination": "place_tray"}},
+                                  "param_num": 1 }            
+        elif cmd == 50:        
+            d = {"timestamp": str(datetime.datetime.now()),
+                 "params": {"1": {"primitive_action": "move",
+                                  "object": "cracker-box-a",
+                                  "source": "cracker-box-a",
+                                  "destination": "place_tray"}},
+                                  "param_num": 1 }
+        elif cmd == 51:        
+            d = {"timestamp": str(datetime.datetime.now()),
+                 "params": {"1": {"primitive_action": "move",
+                                  "object": "screw-driver-a",
+                                  "source": "screw-driver-a",
+                                  "destination": "place-toolbox"}},
+                                  "param_num": 1 }
+        elif cmd == 52:        
+            d = {"timestamp": str(datetime.datetime.now()),
+                 "params": {"1": {"primitive_action": "move",
+                                  "object": "screw-driver-b",
+                                  "source": "screw-driver-b",
+                                  "destination": "place-toolbox"}},
+                                  "param_num": 1 }
+        elif cmd == 53:        
+            d = {"timestamp": str(datetime.datetime.now()),
+                 "params": {"1": {"primitive_action": "move",
+                                  "object": "hammer",
+                                  "source": "hammer",
+                                  "destination": "place-toolbox"}},
+                                  "param_num": 1 }
+        elif cmd == 54:        
+            d = {"timestamp": str(datetime.datetime.now()),
+                 "params": {"1": {"primitive_action": "handover",
+                                  "object": "hammer",
+                                  "source": "hammer",
+                                  "destination": "place-toolbox"}},
+                                  "param_num": 1 }
+        elif cmd == 55:        
+            d = {"timestamp": str(datetime.datetime.now()),
+                 "params": {"1": {"primitive_action": "pick",
+                                  "object": "sb",
+                                  "source": "sb",
+                                  "destination": "place-toolbox"}},
+                                  "param_num": 1 }
+        elif cmd == 56:        
+            d = {"timestamp": str(datetime.datetime.now()),
+                 "params": {"1": {"primitive_action": "handover",
+                                  "object": "sb",
+                                  "source": "sb",
+                                  "destination": "place-toolbox"}},
+                                  "param_num": 1 }
+                
+
+        elif cmd == 60:        
+            d = {"timestamp": str(datetime.datetime.now()),
+                 "params": {"1": {"primitive_action": "pick",
+                                  "object": "o3",
+                                  "source": "na",
+                                  "destination": "na"}},
+                                  "param_num": 1 }
+
+        elif cmd == 61:        
+            d = {"timestamp": str(datetime.datetime.now()),
+                 "params": {"1": {"primitive_action": "pick",
+                                  "object": "o2",
+                                  "source": "na",
+                                  "destination": "na"}},
+                                  "param_num": 1 }
+
+        elif cmd == 62:        
+            d = {"timestamp": str(datetime.datetime.now()),
+                 "params": {"1": {"primitive_action": "pick",
+                                  "object": "o1",
+                                  "source": "na",
+                                  "destination": "na"}},
+                                  "param_num": 1 }
+                
+        ## elif cmd == 2:        
+        ##     d = {"timestamp": str(datetime.datetime.now()),
+        ##          "params": {"1": {"primitive_action": "move",
+        ##                           "object": "cracker-box-a",
+        ##                           "source": "cracker-box-a",
+        ##                           "destination": "place-store"}},
+        ##                           "param_num": 1 }
+        ## elif cmd == 3:        
+        ##     d = {"timestamp": str(datetime.datetime.now()),
+        ##          "params": {"1": {"primitive_action": "move",
+        ##                           "object": "cracker-box-b",
+        ##                           "source": "cracker-box-b",
+        ##                           "destination": "place-trash-can"}},
+        ##                           "param_num": 1 }
+                
+        else:
+            print "out of range!! No experiments to run."
+            sys.exit()
+
+        pub.publish(json.dumps(d, encoding='ascii'))
+        rospy.sleep(1.0)
+

@@ -8,71 +8,57 @@ from trajectory_msgs.msg import JointTrajectoryPoint
 from std_srvs.srv import Empty
 import argparse
 import time
+import actionlib
+from control_msgs.msg import *
+from trajectory_msgs.msg import *
 
-def moveJointPosition (jointcmds,rname,prefix,nbJoints):
-  for i in range(nbJoints):
-    topic_name = '/' + rname + '/' + prefix + '_joint_' + str(i+1) + '_position_controller/command'
+def movePTUPosition (jointcmds,rname):
+  module = ['pan','tilt']
+  for m in range(2):
+    topic_name = 'ptu_' + module[m] + '_position_controller/command'
     pub = rospy.Publisher(topic_name, Float64, queue_size=10)
     rate = rospy.Rate(100)
     count = 0
-    while (count < 10):
-      pub.publish(jointcmds[i])
-      count = count + 1
-      rate.sleep()
+    while (count < 50):
+        pub.publish(jointcmds[m])
+        count = count + 1
+        rate.sleep()
 
-def moveFingersPosition (jointcmds,rname,prefix,nbJoints):
-  for i in range(nbJoints):
-    topic_name = '/' + rname + '/' + prefix + '_finger_' + str(i+1) + '_position_controller/command'
-    pub = rospy.Publisher(topic_name, Float64, queue_size=10)
-    rate = rospy.Rate(100)
-    count = 0
-    while (count < 10):
-      pub.publish(jointcmds[i])
-      count = count + 1
-      rate.sleep()
 
-def moveJointTrajectory (jointcmds,rname,prefix,nbJoints):
-  topic_name = '/' + rname + '/' + prefix + '_effort_joint_trajectory_controller/command'
-  pub = rospy.Publisher(topic_name, JointTrajectory, queue_size=1)
-  jointCmd = JointTrajectory()  
-  point = JointTrajectoryPoint()
-  jointCmd.header.stamp = rospy.Time.now() + rospy.Duration.from_sec(0.0);  
-  point.time_from_start = rospy.Duration.from_sec(5.0)
-  for i in range(0, nbJoints):
-    jointCmd.joint_names.append(prefix +'_joint_'+str(i+1))
-    point.positions.append(jointcmds[i])
-    point.velocities.append(0)
-    point.accelerations.append(0)
-    point.effort.append(0) 
-  jointCmd.points.append(point)
-  rate = rospy.Rate(100)
-  count = 0
-  while (count < 50):
-    pub.publish(jointCmd)
-    count = count + 1
-    rate.sleep()     
+def moveTrajectory (jointcmds,controller_ns,joint_ns):
+    try:
+      client = actionlib.SimpleActionClient(controller_ns+'/follow_joint_trajectory',
+                                              FollowJointTrajectoryAction)
+      client.wait_for_server()
+    except KeyboardInterrupt: 
+        rospy.signal_shutdown("KeyboardInterrupt")
+        raise    
 
-def moveFingersTrajectory (jointcmds,rname,prefix,nbJoints):
-  topic_name = '/' + rname + '/' + prefix + '_effort_finger_trajectory_controller/command'
-  pub = rospy.Publisher(topic_name, JointTrajectory, queue_size=1)  
-  jointCmd = JointTrajectory()  
-  point = JointTrajectoryPoint()
-  jointCmd.header.stamp = rospy.Time.now() + rospy.Duration.from_sec(0.0);  
-  point.time_from_start = rospy.Duration.from_sec(5.0)
-  for i in range(0, nbJoints):
-    jointCmd.joint_names.append(prefix +'_joint_finger_'+str(i+1))
-    point.positions.append(jointcmds[i])
-    point.velocities.append(0)
-    point.accelerations.append(0)
-    point.effort.append(0) 
-  jointCmd.points.append(point)
-  rate = rospy.Rate(100)
-  count = 0
-  while (count < 500):
-    pub.publish(jointCmd)
-    count = count + 1
-    rate.sleep()     
+    g = FollowJointTrajectoryGoal()
+    g.trajectory = JointTrajectory()  
+    g.trajectory.header.stamp = rospy.Time.now() + rospy.Duration.from_sec(0.0);  
 
+    point = JointTrajectoryPoint()  
+    point.time_from_start = rospy.Duration.from_sec(3.0)
+    for i in range(len(jointcmds)):
+        g.trajectory.joint_names.append(joint_ns+str(i+1))
+        point.positions.append(jointcmds[i])
+        point.velocities.append(0)
+        point.accelerations.append(0)
+        point.effort.append(0)
+        
+    g.trajectory.points.append(point)
+    client.send_goal(g)
+    try:
+        client.wait_for_result()
+    except KeyboardInterrupt:
+        client.cancel_goal()
+        raise
+    rospy.loginfo("Done! ")
+        
+
+
+    
 if __name__ == '__main__':
   try:    
     rospy.init_node('move_robot_using_trajectory_msg')		
@@ -85,12 +71,23 @@ if __name__ == '__main__':
     resp = unpause_gazebo()
 
     # left arm
-    moveJointPosition ([1.3,1.07,4.2,-1.6,0.0,0.0],'robot','left',6)
-    moveFingersPosition ([1,1,1],'robot','left',3)
-
+    moveTrajectory([1.0,1.57,4.71,-1.0,0.0,0.0],
+                     'left_position_joint_trajectory_controller',
+                     'left_joint_')
+    moveTrajectory([0,0,0],
+                     'left_effort_finger_trajectory_controller',
+                     'left_joint_finger_')
+    
 	# right arm
-    moveJointPosition ([-1.3,5.21,2.08,1.6,0.0,0.0],'robot','right',6)
-    moveFingersPosition ([1,1,1],'robot','right',3)
+    moveTrajectory([-1.0,4.71,1.57,1.0,0.0,0.0],
+                     'right_position_joint_trajectory_controller',
+                     'right_joint_')
+    moveTrajectory([0,0,0],
+                     'right_effort_finger_trajectory_controller',
+                     'right_joint_finger_')
+    
+    # FLIR PTU
+    ## movePTUPosition ([0.0,0.0],'robot')
 
   except rospy.ROSInterruptException:
     print "program interrupted before completion"

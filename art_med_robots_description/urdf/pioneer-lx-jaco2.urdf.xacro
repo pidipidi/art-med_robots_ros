@@ -96,14 +96,14 @@ TODO separate out pioner lx wheels in visual model
       </material>
     </visual>
 -->
-    
+<!--    
     <collision name="r_wheel_collision">
       <geometry name="r_wheel_collision_geom">
         <cylinder radius="0.100" length="0.05" />
       </geometry>
       <origin rpy="1.570796 0 0" />
     </collision>
-        
+-->    
   </link>
 
   <!-- left wheel -->
@@ -126,14 +126,14 @@ TODO separate out pioner lx wheels in visual model
       </material>
     </visual>
    -->
- 
+<!-- 
     <collision name="l_wheel_collision">
       <geometry name="l_wheel_collision_geom">
         <cylinder radius="0.100" length="0.05" />
       </geometry>
       <origin rpy="1.570796 0 0" />
     </collision>
-        
+-->        
   </link>
 
   <!-- wheel joints. only used in gazebo, real robot velocity is controlled as a unit, not individual wheel motion. -->
@@ -195,7 +195,6 @@ TODO separate out pioner lx wheels in visual model
       <geometry name="plinth_collision_geom">
 		  <mesh filename="package://amr_robots_description/meshes/pioneer-lx/pioneer-lx-plinth.stl" scale="0.001 0.001 0.001" />
         <!-- box size="0.18 0.2476 0.99" / -->
-        <origin xyz="-0.02 0 0.867" />
       </geometry>
     </collision>
 
@@ -238,11 +237,24 @@ TODO separate out pioner lx wheels in visual model
     <!-- old z was 1.1384 -->
   </joint>
 
-  <xacro:j2n6s300  base_parent="left_arm_mount" prefix="left" />
-  
+  <xacro:j2n6s300  base_parent="left_arm_mount" prefix="left" />  
   <xacro:j2n6s300  base_parent="right_arm_mount" prefix="right" />
 
-
-</robot>
+  <!-- PTU 
+    The flir_ptu_description package is either from system packages in
+    /opt/ros/... or from source repository
+    https://github.com/ros-drivers/flir_ptu
+  -->
   
+  <xacro:include filename="$(find art_med_robots_description)/urdf/d46.urdf.xacro" />
+  <ptu_d46 name="ptu" />
+
+  <joint name="ptu_base_mount" type="fixed">
+    <parent link="plinth" />
+    <child link="ptu_base_link" />
+    <origin xyz="0.152 0.03 0.91" />
+  </joint>
+  
+</robot>
+
 

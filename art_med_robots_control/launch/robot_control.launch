@@ -3,30 +3,29 @@
 
   <!-- Load joint controller configurations from YAML file to parameter server -->
   <rosparam file="$(find art_med_robots_control)/config/$(arg name)_control.yaml" command="load"/>
- 
-  <!-- load the joint by joint position controllers -->  
-  <node name="$(arg name)_joints_controller" pkg="controller_manager" type="spawner" respawn="false"
-    output="screen" ns="$(arg name)" 
-   args="left_joint_1_position_controller left_joint_2_position_controller  
-   	       left_joint_3_position_controller left_joint_4_position_controller
-		   left_joint_5_position_controller left_joint_6_position_controller 
-		   left_finger_2_position_controller left_finger_1_position_controller 
-		   left_finger_3_position_controller left_finger_tip_1_position_controller
-		   left_finger_tip_2_position_controller left_finger_tip_3_position_controller
-           right_joint_1_position_controller right_joint_2_position_controller  
-   	       right_joint_3_position_controller right_joint_4_position_controller
-		   right_joint_5_position_controller right_joint_6_position_controller 
-		   right_finger_2_position_controller right_finger_1_position_controller 
-		   right_finger_3_position_controller right_finger_tip_1_position_controller
-		   right_finger_tip_2_position_controller right_finger_tip_3_position_controller
-		   joint_state_controller"/> 
+  <rosparam file="$(find art_med_robots_control)/config/jaco2_left_control.yaml" command="load"/>
+  <rosparam file="$(find art_med_robots_control)/config/jaco2_right_control.yaml" command="load"/>
 
+  <!-- Effort Joint trajectory controller-->
+  <node name="$(arg name)_joints_controller" pkg="controller_manager" type="spawner" respawn="false"
+    output="screen"
+    args="joint_state_controller
+          left_position_joint_trajectory_controller
+          left_effort_finger_trajectory_controller
+          left_effort_finger_tip_trajectory_controller
+          right_position_joint_trajectory_controller
+          right_effort_finger_trajectory_controller
+          right_effort_finger_tip_trajectory_controller
+          ptu_pan_position_controller
+          ptu_tilt_position_controller
+          "/>
+
+  
   <!-- convert joint states to TF transforms for rviz, etc -->
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
         respawn="false" output="screen">    
-    <remap from="/joint_states" to="/$(arg name)/joint_states"/>    
   </node>
 
   <node name="command_robot_home_pose" pkg="art_med_robots_control" type="move_robot.py" />
-  
+
 </launch>
